@@ -1,0 +1,410 @@
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  /* retro neon background: linear-gradient(130deg, #F600FF, #2D2DFF, #04C2C9, #5C6BC0, #FF4F00); */
+  /* autum background: linear-gradient(130deg, #FF4E00, #F05454, #D64B3C, #AE3C3C, #832C1E); */
+  background: linear-gradient(130deg, #011C40, #024059, #0396A6,#04BFBF, #9CE3D5);
+
+
+
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 10px;
+  overflow-y: auto;
+
+}
+
+.main-container {
+  background-color: #ffffff10;
+  border-radius: 20px;
+  padding: 30px;
+  overflow-y: auto;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow: auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+.container {
+  background-color: #ffffff10;
+  border-radius: 20px;
+  padding: 30px;
+  overflow-y: auto;
+  width: 50%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow: auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.container form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0rem;
+  margin-bottom: 0rem;
+  padding: 10px;
+  width: 90%;
+  max-width: 800%;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+
+.container button[type="submit"] {
+  background-color: #0396A6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  padding: 10px;
+  margin: 0.5rem;
+  width: 90%;
+  max-width: 300px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.container button[type="submit"]:hover {
+  
+  font-weight: bold;
+  background-color: #024059;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+  padding: 10px;
+  margin: 0.5rem;
+  width: 90%;
+  max-width: 300px;
+  border: 2px solid #9CE3D5;
+
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+/* Table wrapper allows horizontal scrolling */
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+/* Table styles */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: #fff;
+
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; /* Allows text to wrap */
+}
+
+th {
+  font-size: 10px;
+  color: #fff;
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  background: transparent;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+td {
+  font-size: small;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(233, 164, 164, 0.1);
+  color: #fff;
+}
+
+tr { 
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Prevents text from wrapping */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: background-color 0.3s ease;
+} 
+
+/*----------------------------------------------------------------------------------------- */
+
+/* Menu Tabs */
+.menu-tabs button {
+  margin: 0.3rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-tabs button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+  /* Slight zoom effect */
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+h1 {
+  text-align: center;
+  color: #fcf9f9;
+}
+
+h2 {
+  text-align: center;
+  color: #fcf9f9;
+  background: transparent;
+  border-color: #fcf9f9;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+/* Card Sections */
+.card-section {
+  max-height: 60vh;
+  overflow-y: auto;
+  display: none;
+  opacity: 0;
+  margin-top: 1rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.card-section.active {
+  display: block;
+  opacity: 1;
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+.here {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+.manage-boarder-buttons {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0rem;
+  padding: 0rem;
+  border-radius: px;
+
+}
+
+.manage-boarder-buttons input[type="text"]{
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  margin: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.manage-boarder-buttons button {
+  padding: 10px;
+  margin: 0.5rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: small;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  background: transparent;
+  border-radius: 8px;
+
+}
+
+.manage-boarder-buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+  /* Slight zoom effect */
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+a {
+  text-decoration: none;
+  color: #667eea;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #5cff92;
+}
+
+a.button {
+  text-decoration: none;
+  padding: 10px;
+  background-color: #667eea;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+a.button:hover {
+  background-color: #556cd6;
+}
+
+button {
+  padding: 10px;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #764ba2;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="tel"]{
+  padding: 10px;
+  margin: 0.5rem ;
+  width: 75%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+/*scrollbar*/
+
+/* Works for Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
+  /* Thin scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  /* Transparent feel */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  /* Fully transparent track */
+}
+
+/*horizontal scrollbar*/
+::-webkit-scrollbar:horizontal {
+  height: 6px;
+  /* Thin scrollbar */
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: rgba(255, 255, 255, 0.2);
+  /* Transparent feel */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track:horizontal {
+  background: transparent;
+  /* Fully transparent track */
+}
+
+
+@media (max-width: 600px) {
+  .main-container {
+    max-width: 95%;
+    max-height: 85vh;
+  }
+
+  .card-section {
+    max-height: 70vh;
+
+  }
+}
+
+/*----------------------------------------------------------------------------------------- */
+
+.selected-row {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #000;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Prevents text from wrapping */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+}

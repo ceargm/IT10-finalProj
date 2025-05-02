@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BHMS - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <h1>Welcome to BHMS Dashboard</h1>
+
+        <!-- Menu Tabs -->
+        <div class="menu-tabs">
+            <button onclick="showSection('boarders')">📊 Boarders</button>
+            <button onclick="showSection('transactions')">👤 Transactions</button>
+            <button onclick="showSection('boarder-log')">📝 Boarder Log</button>
+            <button onclick="showSection('profile')">👤 Boarder Bill</button>
+            <button onclick="logout()">👤 Logout</button>
+
+        </div>
+
+        <!-- Section: Manage Boarders -->
+        <div id="boarders" class="card-section">
+
+            <h2>MANAGE BOARDERS</h2>
+            <div class="here">
+                <form id="boarderForm">
+
+                    <input type="text" id="room" placeholder="Room Number" required>
+                    <input type="text" id="boarderName" placeholder="Boarder Name" required>
+                    <input type="text" id="movedInDate" placeholder="Moved-In Date (YYYY/MM/DD)"
+                        pattern="\d{4}/\d{2}/\d{2}" title="Format: YYYY/MM/DD" required>
+                    <input type="text" id="birthDate" placeholder="Birth Date (YYYY/MM/DD)" pattern="\d{4}/\d{2}/\d{2}"
+                        title="Format: YYYY/MM/DD" required>
+                    <input type="text" id="address" placeholder="Address" required>
+                    <input type="tel" id="contactNumber" placeholder="Phone (09123456789)" pattern="09\d{9}"
+                        maxlength="11" inputmode="numeric" title="11-digit number starting with 09" required>
+                    <div class="manage-boarder-buttons">
+                        <button id="addB">Add Boarder</button>
+                        <button id="editB">Edit Boarder</button>
+                        <button id="deleteB">Delete Boarder</button>
+                        <button id="clearF">Clear Fields</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <h2>BOARDER LIST</h2>
+            <div class="manage-boarder-buttons">
+                <input type="text" id="searchBoarder" placeholder="Search by name, room, or contact"
+                    oninput="filterBoarders()" />
+            </div>
+            <div class="table-container">
+                <table id="boardersTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Room</th>
+                            <th>Name</th>
+                            <th>Moved-In</th>
+                            <th>Birthdate</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody id="boardersBody">
+                        <tr>
+                            <td colspan="7" style="text-align: center;">No boarders yet</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Transactions Section -->
+        <div id="transactions" class="card-section">
+            <h2>MANAGE TRANSACTIONS</h2>
+
+
+
+            <!-- Transaction Form -->
+
+            <div class="here">
+                <form id="transactionForm">
+                    <input type="text" id="transactionDate" placeholder="Date (YYYY/MM/DD)" required>
+                    <input type="text" id="particulars" placeholder="Particulars" required>
+                    <input type="number" id="debit" placeholder="Debit">
+                    <input type="number" id="credit" placeholder="Credit">
+                    <div class="manage-boarder-buttons">
+                        <button type="button" id="addT">Add Transaction</button>
+                        <button type="button" id="editT">Edit Transaction</button>
+                        <button type="button" id="deleteT">Delete Transaction</button>
+                        <button type="button" id="clearT">Clear Fields</button>
+                    </div>
+                </form>
+            </div>
+            <h2>TRANSACTION LIST</h2>
+            <!-- Search Field -->
+            <div class="manage-boarder-buttons">
+                <input type="text" id="searchTransaction" placeholder="Search by particulars or date"
+                    oninput="filterTransactions()" />
+            </div>
+
+            <div class="table-container">
+                <table id="transactionsTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Particulars</th>
+                            <th>Debit</th>
+                            <th>Credit</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsBody">
+                        <tr>
+                            <td colspan="4" style="text-align: center;">No transactions yet</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </div>
+    <script>
+        function logout() {
+            localStorage.removeItem("bhmsUser"); // if you're using localStorage
+            // Redirect to login page
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+
+
+
+</html>
