@@ -1,21 +1,24 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+}
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  /* retro neon background: linear-gradient(130deg, #F600FF, #2D2DFF, #04C2C9, #5C6BC0, #FF4F00); */
-  /* autum background: linear-gradient(130deg, #FF4E00, #F05454, #D64B3C, #AE3C3C, #832C1E); */
-  background: linear-gradient(130deg, #011C40, #024059, #0396A6,#04BFBF, #9CE3D5);
-
-
-
-  color: white;
+  height: 100vh;
   display: flex;
+  /* background: linear-gradient(160deg, #2C3E50, #3A6073, #4CA1AF, #ADD8E6, #E0FFFF); */
+  background: linear-gradient(145deg, #010b15, #011627, #023e7d, #0353a4, #0466c8, #2b8fd8);
+
+  /* background: linear-gradient(130deg, #F600FF, #2D2DFF, #04C2C9, #5C6BC0, #FF4F00); */
+  /* autum background: linear-gradient(130deg, #FF4E00, #F05454, #D64B3C, #AE3C3C, #832C1E); */
+  /* background: linear-gradient(130deg, #011C40, #024059, #0396A6, #04BFBF, #9CE3D5); */
+  /* background: linear-gradient(to right, #83a4d4, #b6fbff); */
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  padding: 10px;
-  overflow-y: auto;
-
+  /* padding: 10px;
+  overflow-y: auto; */
 }
 
 .main-container {
@@ -30,74 +33,169 @@ body {
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
-  
 }
 
 /*----------------------------------------------------------------------------------------- */
 
-.container {
-  background-color: #ffffff10;
-  border-radius: 20px;
-  padding: 30px;
-  overflow-y: auto;
-  width: 50%;
-  max-width: 400px;
-  max-height: 90vh;
-  overflow: auto;
-  text-align: center;
+.login-container {
+  
+  background: transparent;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 350px;
+  /* overflow-y: auto; */
 }
 
-.container form {
+/* .form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 0rem;
-  margin-bottom: 0rem;
-  padding: 10px;
-  width: 90%;
-  max-width: 800%;
-  max-height: 90vh;
-  overflow: auto;
-}
-
-
-.container button[type="submit"] {
-  background-color: #0396A6;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-  padding: 10px;
-  margin: 0.5rem;
-  width: 90%;
-  max-width: 300px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-}
-
-.container button[type="submit"]:hover {
+  border-radius: 12px;
   
-  font-weight: bold;
-  background-color: #024059;
+} */
+
+.login-form h1,
+h2 {
   color: white;
-  border: none;
+  text-align: center;
+}
+
+.login-form label {
+  display: block;
+  text-align: left;
+  margin-top: 0.95rem;
+  margin-bottom: 0.95rem;
+  color: white;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.login-form input::placeholder {
+  color: white;
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+.login-form input {
+  outline: none;
+  color: #FFFFFF;
+  background-color: #0353a4;
+  background: transparent;
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #2b8fd8;
   border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+  font-size: 0.9rem;
+  transition: border 0.3s;
+
+  /* padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border 0.3s;
   padding: 10px;
-  margin: 0.5rem;
-  width: 90%;
-  max-width: 300px;
-  border: 2px solid #9CE3D5;
+  width: 300px; */
+}
+
+.login-form input:focus {
+  border: 2px solid white;
+ 
 
 }
+
+.login-form button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background-color: #023e7d;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: transparent;
+
+  transition: background-color 0.3s;
+
+
+  /* padding: 0.75rem; */
+  /* font-weight: bold;
+  font-size: 0.9rem;
+  
+  width: 300px;
+  margin-top: 0.95rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; */
+}
+
+.login-form button:hover {
+  background-color: #0353a4;
+
+
+}
+
+.signup-text,
+.login-text {
+  color: #fff;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.signup-text a {
+  text-decoration: none;
+  color: #a4d1f8;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*----------------------------------------------------------------------------------------- */
 
@@ -119,7 +217,8 @@ table {
   table-layout: fixed;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -128,7 +227,8 @@ th, td {
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: normal; /* Allows text to wrap */
+  white-space: normal;
+  /* Allows text to wrap */
 }
 
 th {
@@ -152,19 +252,20 @@ td {
   color: #fff;
 }
 
-tr { 
+tr {
   transition: background-color 0.3s ease;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; /* Prevents text from wrapping */
+  white-space: nowrap;
+  /* Prevents text from wrapping */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 tr:hover {
   background-color: rgba(255, 255, 255, 0.3);
   transition: background-color 0.3s ease;
-} 
+}
 
 /*----------------------------------------------------------------------------------------- */
 
@@ -188,7 +289,7 @@ tr:hover {
 
 /*----------------------------------------------------------------------------------------- */
 
-h1 {
+/* h1 {
   text-align: center;
   color: #fcf9f9;
 }
@@ -206,7 +307,7 @@ h2 {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, transform 0.2s ease;
 
-}
+} */
 
 /*----------------------------------------------------------------------------------------- */
 
@@ -255,7 +356,7 @@ h2 {
 
 }
 
-.manage-boarder-buttons input[type="text"]{
+.manage-boarder-buttons input[type="text"] {
   width: 100%;
   max-width: 100%;
   padding: 10px;
@@ -289,21 +390,21 @@ h2 {
 
 /*----------------------------------------------------------------------------------------- */
 
-a {
+/* a {
   text-decoration: none;
-  color: #667eea;
+  color: white;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #5cff92;
-}
+  color: #667eea;
 
-a.button {
+} */
+
+/* a.button {
   text-decoration: none;
   padding: 10px;
-  background-color: #667eea;
   color: white;
   text-align: center;
   border-radius: 8px;
@@ -313,9 +414,9 @@ a.button {
 
 a.button:hover {
   background-color: #556cd6;
-}
+} */
 
-button {
+/* button {
   padding: 10px;
   background-color: #667eea;
   color: white;
@@ -328,20 +429,20 @@ button {
 
 button:hover {
   background-color: #764ba2;
-}
+} */
 
-input[type="text"],
+/* input[type="text"],
 input[type="password"],
 input[type="number"],
 input[type="date"],
-input[type="tel"]{
+input[type="tel"] {
   padding: 10px;
-  margin: 0.5rem ;
+  margin: 0.5rem;
   width: 75%;
   max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 8px;
-}
+} */
 
 /*----------------------------------------------------------------------------------------- */
 
@@ -381,7 +482,7 @@ input[type="tel"]{
   /* Fully transparent track */
 }
 
-
+/* 
 @media (max-width: 600px) {
   .main-container {
     max-width: 95%;
@@ -392,7 +493,7 @@ input[type="tel"]{
     max-height: 70vh;
 
   }
-}
+} */
 
 /*----------------------------------------------------------------------------------------- */
 
@@ -404,7 +505,8 @@ input[type="tel"]{
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; /* Prevents text from wrapping */
+  white-space: nowrap;
+  /* Prevents text from wrapping */
   transition: background-color 0.3s ease, transform 0.2s ease;
 
 }
