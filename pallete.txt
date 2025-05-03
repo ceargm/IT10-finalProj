@@ -1,0 +1,8 @@
+
+
+lighter blue
+ #2b8fd8
+#c0defc
+
+instead of white
+#d3e9ff

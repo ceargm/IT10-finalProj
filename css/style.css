@@ -21,24 +21,10 @@ body {
   overflow-y: auto; */
 }
 
-.main-container {
-  background-color: #ffffff10;
-  border-radius: 20px;
-  padding: 30px;
-  overflow-y: auto;
-  width: 90%;
-  max-width: 800px;
-  max-height: 90vh;
-  overflow: auto;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-}
-
 /*----------------------------------------------------------------------------------------- */
 
 .login-container {
-  
+
   background: transparent;
   padding: 2rem 2.5rem;
   border-radius: 12px;
@@ -58,8 +44,10 @@ body {
 } */
 
 .login-form h1,
+h2,
+.main-container h1,
 h2 {
-  color: white;
+  color: #d3e9ff;
   text-align: center;
 }
 
@@ -68,20 +56,20 @@ h2 {
   text-align: left;
   margin-top: 0.95rem;
   margin-bottom: 0.95rem;
-  color: white;
+  color: #d3e9ff;
   font-size: 0.95rem;
   width: 100%;
 }
 
 .login-form input::placeholder {
-  color: white;
+  color: #c0defc;
   opacity: 0.6;
   font-size: 0.9rem;
 }
 
 .login-form input {
   outline: none;
-  color: #FFFFFF;
+  color: #c0defc;
   background-color: #0353a4;
   background: transparent;
   width: 100%;
@@ -101,8 +89,8 @@ h2 {
 }
 
 .login-form input:focus {
-  border: 2px solid white;
- 
+  border: 2px solid #c0defc;
+
 
 }
 
@@ -112,7 +100,7 @@ h2 {
   border: none;
   background-color: #023e7d;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  color: white;
+  color: #c0defc;
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
@@ -121,35 +109,17 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 1px;
   background: transparent;
-
   transition: background-color 0.3s;
-
-
-  /* padding: 0.75rem; */
-  /* font-weight: bold;
-  font-size: 0.9rem;
-  
-  width: 300px;
-  margin-top: 0.95rem;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; */
 }
 
 .login-form button:hover {
   background-color: #0353a4;
-
-
+  color: #d3e9ff;
 }
 
 .signup-text,
 .login-text {
-  color: #fff;
+  color: #c0defc;
   text-align: center;
   margin-top: 1rem;
   font-size: 0.9rem;
@@ -157,7 +127,7 @@ h2 {
 
 .signup-text a {
   text-decoration: none;
-  color: #a4d1f8;
+  color: #d3e9ff;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -167,35 +137,52 @@ h2 {
 
 }
 
+/*----------------------------------------------------------------------------------------- */
 
+.main-container {
+  background-color: #2b90d81b;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  max-height: 90vh;
+  overflow: auto;
+  justify-content: center;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
 
+/* Menu Tabs */
 
+.menu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0rem 0.5rem;
+  justify-content: center;
 
+  background: transparent;
+}
 
+.menu-tabs button {
+  
+  max-width: 150px;
+  margin: 0.3rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.menu-tabs button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+  /* Slight zoom effect */
+}
 
 /*----------------------------------------------------------------------------------------- */
 
@@ -269,23 +256,6 @@ tr:hover {
 
 /*----------------------------------------------------------------------------------------- */
 
-/* Menu Tabs */
-.menu-tabs button {
-  margin: 0.3rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.menu-tabs button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-  transform: scale(1.05);
-  /* Slight zoom effect */
-}
 
 /*----------------------------------------------------------------------------------------- */
 
