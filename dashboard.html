@@ -10,51 +10,55 @@
 <body>
     <div class="main-container">
         <h1>Welcome to BHMS Dashboard</h1>
-        <p class="login-text">Welcome, Admin! This app will help you to achuchu.</p>
+        <p class="textDescription">Welcome, <span id="usernameDisplay"></span>! This app helps you manage boarders,
+            bills, logs, and transactions with ease.</p>
 
         <!-- Menu Tabs -->
         <div class="menu-tabs">
             <button onclick="showSection('boarders')">📊 Boarders</button>
             <button onclick="showSection('transactions')">👤 Transactions</button>
-            <button onclick="showSection('boarder-log')">📝 Boarder Log</button>
-            <button onclick="showSection('profile')">👤 Boarder Bill</button>
+            <button onclick="showSection('boarder-bill')">👤 Boarder Bill</button>
             <button onclick="logout()">👤 Logout</button>
-
         </div>
 
         <!-- Section: Manage Boarders -->
         <div id="boarders" class="card-section">
 
             <h2>MANAGE BOARDERS</h2>
+            <p class="textDescription" style="padding-bottom: 1rem;">Add, edit, or manage your boarders and their
+                details here.</p>
+
             <div class="here">
-                <form id="boarderForm">
-
-                    <input type="text" id="room" placeholder="Room Number" required>
-                    <input type="text" id="boarderName" placeholder="Boarder Name" required>
-                    <input type="text" id="movedInDate" placeholder="Moved-In Date (YYYY/MM/DD)"
+                <form>
+                    <input type="text" autocomplete="off" id="room" placeholder="Room Number" required>
+                    <input type="text" autocomplete="off" id="boarderName" placeholder="Boarder Name" required>
+                    <input type="text" autocomplete="off" id="movedInDate" placeholder="Moved-In Date (YYYY/MM/DD)"
                         pattern="\d{4}/\d{2}/\d{2}" title="Format: YYYY/MM/DD" required>
-                    <input type="text" id="birthDate" placeholder="Birth Date (YYYY/MM/DD)" pattern="\d{4}/\d{2}/\d{2}"
-                        title="Format: YYYY/MM/DD" required>
-                    <input type="text" id="address" placeholder="Address" required>
-                    <input type="tel" id="contactNumber" placeholder="Phone (09123456789)" pattern="09\d{9}"
-                        maxlength="11" inputmode="numeric" title="11-digit number starting with 09" required>
-                    <div class="manage-boarder-buttons">
-                        <button id="addB">Add Boarder</button>
-                        <button id="editB">Edit Boarder</button>
-                        <button id="deleteB">Delete Boarder</button>
-                        <button id="clearF">Clear Fields</button>
-                    </div>
+                    <input type="text" autocomplete="off" id="birthDate" placeholder="Birth Date (YYYY/MM/DD)"
+                        pattern="\d{4}/\d{2}/\d{2}" title="Format: YYYY/MM/DD" required>
+                    <input type="text" autocomplete="off" id="address" placeholder="Address" required>
+                    <input type="tel" autocomplete="off" id="contactNumber" placeholder="Phone (09123456789)"
+                        pattern="09\d{9}" maxlength="11" inputmode="numeric" title="11-digit number starting with 09"
+                        required>
                 </form>
-
+                <div class="manage-boarder-buttons">
+                    <button type="button" id="addB">Add Boarder</button>
+                    <button type="button" id="editB">Edit Boarder</button>
+                    <button type="button" id="deleteB">Delete Boarder</button>
+                    <button type="button" id="clearF">Clear Fields</button>
+                </div>
             </div>
 
-            <h2>BOARDER LIST</h2>
+            <p class="textDescription">View and manage all boarders in the system. You can search by name, room, or
+                contact number.</p>
+
             <div class="manage-boarder-buttons">
                 <input type="text" id="searchBoarder" placeholder="Search by name, room, or contact"
                     oninput="filterBoarders()" />
             </div>
-            <div class="table-container">
-                <table id="boardersTable">
+
+            <div class="manage-boarder-table">
+                <table>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -77,64 +81,142 @@
 
         <!-- Transactions Section -->
         <div id="transactions" class="card-section">
+
             <h2>MANAGE TRANSACTIONS</h2>
-
-
-
-            <!-- Transaction Form -->
+            <p class="textDescription">Track and manage all income and expense transactions here.</p>
 
             <div class="here">
-                <form id="transactionForm">
-                    <input type="text" id="transactionDate" placeholder="Date (YYYY/MM/DD)" required>
-                    <input type="text" id="particulars" placeholder="Particulars" required>
-                    <input type="number" id="debit" placeholder="Debit">
-                    <input type="number" id="credit" placeholder="Credit">
-                    <div class="manage-boarder-buttons">
-                        <button type="button" id="addT">Add Transaction</button>
-                        <button type="button" id="editT">Edit Transaction</button>
-                        <button type="button" id="deleteT">Delete Transaction</button>
-                        <button type="button" id="clearT">Clear Fields</button>
-                    </div>
+                <form>
+                    <input type="text" autocomplete="off" id="transactionDate" placeholder="Date (YYYY/MM/DD)" required>
+
+                    <!-- New Dropdown for Boarder/Admin -->
+                    <select id="boarderDropdown" required>
+                        <option value="" disabled selected>Select Boarder or Admin</option>
+                        <!-- Options will be populated via JS -->
+                    </select>
+
+                    <input type="text" autocomplete="off" id="particulars" placeholder="Rent/Water/Internet/" required>
+                    <input type="number" autocomplete="off" id="debit" placeholder="Debit">
+                    <input type="number" autocomplete="off" id="credit" placeholder="Credit">
+                    <input type="month" autocomplete id="transactionMonth" required>
                 </form>
+
+                <div class="manage-boarder-buttons">
+                    <button type="button" id="addT">Add Transaction</button>
+                    <button type="button" id="editT">Edit Transaction</button>
+                    <button type="button" id="deleteT">Delete Transaction</button>
+                    <button type="button" id="clearT">Clear Fields</button>
+                </div>
             </div>
-            <h2>TRANSACTION LIST</h2>
-            <!-- Search Field -->
+
+            <p class="textDescription">View and manage all transactions in the system. You can search by particulars or
+                date.</p>
+
             <div class="manage-boarder-buttons">
-                <input type="text" id="searchTransaction" placeholder="Search by particulars or date"
+                <input type="text" id="searchTransaction" placeholder="Search by person, particulars or date"
                     oninput="filterTransactions()" />
             </div>
 
-            <div class="table-container">
-                <table id="transactionsTable">
+            <div class="manage-boarder-table">
+                <table>
                     <thead>
                         <tr>
                             <th>Date</th>
+                            <th>Boarder / Admin</th> <!-- New Column -->
                             <th>Particulars</th>
                             <th>Debit</th>
                             <th>Credit</th>
-                            <th>Balance</th>
+                            <th>Month</th>
                         </tr>
                     </thead>
                     <tbody id="transactionsBody">
                         <tr>
-                            <td colspan="4" style="text-align: center;">No transactions yet</td>
+                            <td colspan="6" style="text-align: center;">No transactions yet</td>
                         </tr>
                     </tbody>
                 </table>
-
             </div>
+
+        </div> <!-- end of transaction section -->
+
+
+        <!-- Boarder Bill Section -->
+        <div id="boarder-bill" class="card-section">
+            <h2>CREATE BOARDER BILL</h2>
+            <p class="textDescription">Input monthly bills for each boarder. Bills will be logged as unpaid
+                transactions.</p>
+
+            <div class="here">
+                <form id="billForm">
+                    <input type="month" id="billMonth" required>
+                    <select id="billBoarder" required>
+                        <option value="" disabled selected>Select Boarder</option>
+                        <!-- Options populated via JS -->
+                    </select>
+                    <select id="billType" required>
+                        <option value="" disabled selected>Select Bill Type</option>
+                        <option value="rent">Rent (₱1000)</option>
+                        <option value="water">Water (₱50)</option>
+                        <option value="internet">Internet (₱100)</option>
+                        <option value="electric">Electric (manual)</option>
+                    </select>
+                    <input type="number" id="billAmount" placeholder="Enter Bill Amount" min="0" required>
+                </form>
+
+                <div class="manage-boarder-buttons">
+                    <button type="button" id="addBill">Create Bill</button>
+                    <button type="button" id="editBill">Edit Bill</button>
+                    <button type="button" onclick="clearBillForm()">Clear</button>
+                    <button type="button" onclick="clearBillsForNewMonth()">Clear Bills for New Month</button>
+                </div>
+            </div>
+
+            <p class="textDescription">Below are the auto-logged bill entries for boarders and their payment statuses.
+            </p>
+
+            <div class="manage-boarder-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Boarder</th>
+                            <th>Bill Type</th>
+                            <th>Amount</th>
+                            <th>Paid Amount</th>
+                            <th>Status</th>
+                            <th>Month</th>
+                        </tr>
+                    </thead>
+                    <tbody id="billTableBody">
+                        <tr>
+                            <td colspan="6" style="text-align: center;">No bills logged yet</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
         </div>
-        <script src="script.js"></script>
-    </div>
+
+
+
+    </div> <!-- End of main-container -->
+
+    <script src="script.js"></script>
+    <script src="manage-boarders.js"></script>
+    <script src="transactions.js"></script>
+    <script src="boarder-bill.js"></script>
     <script>
         function logout() {
-            localStorage.removeItem("bhmsUser"); // if you're using localStorage
-            // Redirect to login page
-            window.location.href = 'login.html';
+            //check if the user really wants to logout
+            if (confirm("Are you sure you want to logout?")) {
+                // Clear user data from local storage or session storage
+                localStorage.removeItem("bhmsUser"); // if you're using localStorage
+                // Redirect to login page
+                window.location.href = 'login.html';
+            }
         }
     </script>
 </body>
-
-
 
 </html>

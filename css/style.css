@@ -1,13 +1,19 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0rem;
   font-family: "Segoe UI", sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+
+
 }
+
 
 body {
   height: 100vh;
   display: flex;
+  
   /* background: linear-gradient(160deg, #2C3E50, #3A6073, #4CA1AF, #ADD8E6, #E0FFFF); */
   background: linear-gradient(145deg, #010b15, #011627, #023e7d, #0353a4, #0466c8, #2b8fd8);
 
@@ -121,7 +127,7 @@ h2 {
 .login-text {
   color: #c0defc;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-size: 0.9rem;
 }
 
@@ -186,22 +192,144 @@ h2 {
 
 /*----------------------------------------------------------------------------------------- */
 
-/* Table wrapper allows horizontal scrolling */
-.table-container {
-  max-width: 100%;
-  overflow-x: auto;
-  margin-bottom: 1rem;
+.textDescription {
+  color: #c0defc;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.here {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  margin-bottom: 0rem;
+  /* padding: 1rem 0rem; */
+  padding-bottom: 0%;
+  /* background-color: #2b90d81b; */
+  /* background: linear-gradient(145deg, #010b15, #011627, #023e7d, #0353a4, #0466c8, #2b8fd8); */
+
+  /*bottom border radius adjust*/
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+
+/* .here label {
+  display: block;
+  text-align: left;
+  margin-top: 0.95rem;
+  margin-bottom: 0.95rem;
+  color: #d3e9ff;
+  font-size: 0.95rem;
+  width: 100%;
+} */
+
+.here input::placeholder {
+  color: #c0defc;
+  opacity: 0.9;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.here option {
+  color: #0353a4;
+  background: transparent;
+
 
 }
 
+.here select {
+  outline: none;
+  color: #c0defc;
+  background-color: #0353a4;
+  background: transparent;
+  padding: 10px;
+  margin: 0.5rem;
+  width: 100%;
+  
+  width: 320px; 
+  border: 2px solid #2b8fd8;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border 0.3s;
+  
+}
+.here input[type="text"],
+.here input[type="tel"],
+.here input[type="number"],
+.here input[type="month"] {
+  
+  outline: none;
+  color: #c0defc;
+  background-color: #0353a4;
+  background: transparent;
+  padding: 10px;
+  margin: 0.5rem;
+  width: 100%;
+  
+  width: 320px; 
+  border: 2px solid #2b8fd8;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border 0.3s;
+  font-weight: bold;
+} 
+
+.here input[type="text"]:focus,
+.here input[type="tel"]:focus,
+.here input[type="number"]:focus,
+.here input[type="month"] {
+  border: 2px solid #c0defc;
+  background-color: #0353a4;
+  background: transparent;
+  font-size: 0.9rem;
+  transition: border 0.3s;
+  font-weight: 400px;
+}
+
+.here input[type="text"]:focus::placeholder,
+.here input[type="tel"]:focus::placeholder,
+.here input[type="number"]:focus::placeholder,
+.here input[type="month"] {
+  color: #c0defc;
+  opacity: 0.9r;
+  font-size: 0.9rem;
+  
+}
+
+.here input:disabled{
+  border: 2px solid #2b8fd8;
+  background-color: #4d5f70;
+  background: transparent;
+  transition: border 0.3s;
+  font-weight: 400px;
+  opacity: 0.5;
+}
+
 /*----------------------------------------------------------------------------------------- */
+/* Table wrapper allows horizontal scrolling */
+.manage-boarder-table{
+  width: 100%;
+  overflow-x: auto; /* Enables horizontal scrolling when content overflows */
+  margin: 0 auto; /* Centers the container */
+  padding: 0.5rem;
+}
+
+
 
 /* Table styles */
 
 table {
+
   width: 100%;
+  min-width: 600px; /* Minimum width to prevent collapsing */
+  background-color: transparent;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto; /* Allows the table to adjust its width based on content */
+  /* padding: 0.5rem; */
 }
 
 th,
@@ -210,14 +338,14 @@ td {
   text-align: left;
   border-bottom: 1px solid #ddd;
   color: #fff;
-
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-  /* Allows text to wrap */
+  width: auto; /* Allows the column to adjust its width based on content */
 }
 
+/*header styles*/
 th {
   font-size: 10px;
   color: #fff;
@@ -232,28 +360,26 @@ th {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* data cells styles*/
 td {
-  font-size: small;
+  font-size: 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background-color: rgba(233, 164, 164, 0.1);
-  color: #fff;
 }
 
 tr {
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  /* Prevents text from wrapping */
   transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  
 }
-
 tr:hover {
   background-color: rgba(255, 255, 255, 0.3);
-  transition: background-color 0.3s ease;
 }
 
+/* Optional: Add spacing between rows for a more breathable layout */
+tr:not(:last-child) {
+  margin-bottom: 10px;
+}
 /*----------------------------------------------------------------------------------------- */
 
 
@@ -290,6 +416,8 @@ h2 {
   margin-top: 1rem;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(145deg, #010b15, #011627, #023e7d, #0353a4, #0466c8, #2b8fd8);
+  justify-content: center;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -301,41 +429,72 @@ h2 {
   opacity: 1;
 }
 
+.card-section h2 {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  color: #d3e9ff;
+  background: transparent;
+  
+  border-color: #d3e9ff;
+  font-size: 1.5rem;  
+  /* margin-top: 0.5rem;
+  margin-bottom: 1.5rem; */
+  /* margin: 0rem 0; */
+  padding-top: 0rem;
+  /* border-bottom: 2px solid #d3e9ff79;  */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  
+}
+
+
 /*----------------------------------------------------------------------------------------- */
 
-.here {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin: 0 auto;
-  padding: 10px;
-}
+
 
 /*----------------------------------------------------------------------------------------- */
 
 .manage-boarder-buttons {
+  display: flex;
   width: 100%;
   max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 0rem;
-  padding: 0rem;
-  border-radius: px;
-
+  padding: 0rem; 
 }
+
+
 
 .manage-boarder-buttons input[type="text"] {
-  width: 100%;
-  max-width: 100%;
+  outline: none;
+  color: #c0defc;
+  background-color: #0353a4;
+  background: transparent;
   padding: 10px;
   margin: 0.5rem;
-  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 100%;
+  border: 2px solid #2b8fd8;
   border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border 0.3s;
 }
 
-.manage-boarder-buttons button {
+.manage-boarder-buttons input[type="text"]:focus {
+  border: 2px solid #c0defc;
+  background-color: #0353a4;
+  background: transparent;
+}
+
+.manage-boarder-buttons input[type="text"]::placeholder {
+  color: #c0defc;
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+.manage-boarder-buttons button{
   padding: 10px;
   margin: 0.5rem;
   border: none;
@@ -345,17 +504,32 @@ h2 {
   font-size: small;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   background-color: rgba(255, 255, 255, 0.2);
-  background: transparent;
   border-radius: 8px;
-
+  
 }
 
-.manage-boarder-buttons button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+.manage-boarder-buttons button:enabled:hover {
+  background-color: #2b8fd8;
   transform: scale(1.05);
   /* Slight zoom effect */
+}
+
+.manage-boarder-buttons buttons:disabled:hover {
+  padding: 10px;
+  margin: 0.5rem;
+  border: none;
+  color: white;
+  cursor: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: small;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+
 }
 
 /*----------------------------------------------------------------------------------------- */
@@ -401,69 +575,6 @@ button:hover {
   background-color: #764ba2;
 } */
 
-/* input[type="text"],
-input[type="password"],
-input[type="number"],
-input[type="date"],
-input[type="tel"] {
-  padding: 10px;
-  margin: 0.5rem;
-  width: 75%;
-  max-width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-} */
-
-/*----------------------------------------------------------------------------------------- */
-
-/*scrollbar*/
-
-/* Works for Chrome, Edge, Safari */
-::-webkit-scrollbar {
-  width: 6px;
-  /* Thin scrollbar */
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  /* Transparent feel */
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-  /* Fully transparent track */
-}
-
-/*horizontal scrollbar*/
-::-webkit-scrollbar:horizontal {
-  height: 6px;
-  /* Thin scrollbar */
-}
-
-::-webkit-scrollbar-thumb:horizontal {
-  background: rgba(255, 255, 255, 0.2);
-  /* Transparent feel */
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track:horizontal {
-  background: transparent;
-  /* Fully transparent track */
-}
-
-/* 
-@media (max-width: 600px) {
-  .main-container {
-    max-width: 95%;
-    max-height: 85vh;
-  }
-
-  .card-section {
-    max-height: 70vh;
-
-  }
-} */
 
 /*----------------------------------------------------------------------------------------- */
 
