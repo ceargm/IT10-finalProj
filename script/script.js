@@ -1,12 +1,14 @@
 function showSection(id) {
     const activeSection = document.getElementById(id);
     const textDescription = document.querySelector('.textDescription');
+    // const title = document.querySelector('.title');
 
     // Toggle the 'active' class on the clicked section
     if (activeSection.classList.contains('active')) {
         // Hide the section if it's already active
         activeSection.classList.remove('active');
         textDescription.style.display = 'block'; // Show the login text again
+        // title.style.display = 'block'; // Show the login text again
     } else {
         // Hide all sections first
         const sections = document.querySelectorAll('.card-section');
@@ -17,6 +19,7 @@ function showSection(id) {
 
         // Hide the login text when a section is active
         textDescription.style.display = 'none';
+        // title.style.display = 'none';
     }
 }
 
