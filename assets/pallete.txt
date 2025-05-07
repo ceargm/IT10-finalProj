@@ -6,3 +6,6 @@ lighter blue
 
 instead of white
 #d3e9ff
+
+yellow for tips/guides
+#d5d82b;
