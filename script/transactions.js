@@ -86,6 +86,8 @@ editTransactionBtn.onclick = function () {
         return alert("No changes made to the transaction.");
     }
 
+    if (!confirm("Are you sure you want to edit this transaction?")) return;
+
     // Log the changes
     let logMessage = `Updated transaction for ${person} (Particulars: ${particulars}, Date: ${date})`;
     if (originalTransaction.date !== date) logMessage += `, Date: ${originalTransaction.date} → ${date}`;
@@ -125,9 +127,6 @@ editTransactionBtn.onclick = function () {
 deleteTransactionBtn.onclick = function () {
     if (selectedTransactionRow === null) return alert("Select a transaction from the table to delete.");
 
-    if (confirm("Are you sure you want to delete this transaction?")) {
-        // Get the transaction that is being deleted
-
         // const transactionToDelete = transactions[selectedTransactionRow];
 
         const date = document.getElementById("transactionDate").value;
@@ -137,7 +136,7 @@ deleteTransactionBtn.onclick = function () {
         const credit = document.getElementById("credit").value || 0;
         const month = document.getElementById("transactionMonth").value;
 
-        const selectedTransactionRow = transactions.findIndex(transactions =>
+        selectedTransactionRow = transactions.findIndex(transactions =>
             transactions.date === date &&
             transactions.person === person &&
             transactions.particulars === particulars &&
@@ -172,8 +171,7 @@ deleteTransactionBtn.onclick = function () {
         addActivityLog("Deleted Transaction", `Date: ${date}, Person: ${person}, Particulars: ${particulars}, Debit: ${debit}, Credit: ${credit}, Month: ${month}`);
         alert("Transaction deleted successfully.");
 
-    }
-};
+    };
 
 ////////// clearing form fields  ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -211,7 +209,7 @@ function loadBoardersDropdown() {
     dropdownBoarder.innerHTML = `<option value="" disabled selected>Select Boarder or Admin</option>`;
 
     const boarders = JSON.parse(localStorage.getItem(`boarders_${currentUser.username}`)) || [];
-    
+
     boarders.forEach(b => {
         const option = document.createElement("option");
         option.value = b.name;
@@ -328,7 +326,8 @@ function renderFilteredTransactionsTable(filteredTransactions) {
     });
 }
 
-// Initialize
-renderTransactionsTable();
 
+// renderTable();
+// renderTransactionsTable();
+// loadBoardersDropdown();
 

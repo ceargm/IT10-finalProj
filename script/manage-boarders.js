@@ -102,6 +102,8 @@ editBtn.onclick = function () {
         return alert("No changes made to the form.");
     }
 
+    if (!confirm("Are you sure you want to edit this boarder?")) return;
+
     // Log the changes
     let logMessage = `Updated boarder: ${name} (Room: ${room})`;
     if (originalBoarder.room !== room) logMessage += `, Room: ${originalBoarder.room} → ${room}`;
@@ -134,55 +136,53 @@ editBtn.onclick = function () {
 };
 
 
-////////// deleting a boarder ////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////// deleting a boarder ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-deleteBtn.onclick = function () {
-    if (selectedRow === null) return alert("Please select a boarder in the table to delete.");
+document.addEventListener("DOMContentLoaded", function () {
+    deleteBtn.onclick = function () {
+        if (selectedRow === null) return alert("Please select a boarder in the table to delete.");
 
-    const boarderToDelete = boarders[selectedRow];
+        const boarderToDelete = boarders[selectedRow];
 
-    if (confirm(`Are you sure you want to delete the boarder ${boarderToDelete.name}? This will also delete all their transactions.`)) {
+        if (confirm(`Are you sure you want to delete the boarder ${boarderToDelete.name}? This will also delete all their transactions and bills.`)) {
+            // Delete boarder from list
+            boarders.splice(selectedRow, 1);
+            saveBoarders();
 
-        // Delete boarder
-        boarders.splice(selectedRow, 1);
-        
-        saveBoarders();
+            // Normalize name for comparison
+            const nameToDelete = boarderToDelete.name.toLowerCase().trim();
 
-        // Normalize name for comparison
-        const nameToDelete = boarderToDelete.name.toLowerCase().trim();
+            // Load and filter transactions
+            let transactions = JSON.parse(localStorage.getItem(`transactions_${currentUser.username}`)) || [];
+            transactions = transactions.filter(tx => tx.person.toLowerCase().trim() !== nameToDelete);
+            localStorage.setItem(`transactions_${currentUser.username}`, JSON.stringify(transactions));
 
-        // Load transactions and boarderBills from localStorage (since you didn't declare them globally)
-        let transactions = JSON.parse(localStorage.getItem(`transactions_${currentUser.username}`)) || [];
-        let boarderBills = JSON.parse(localStorage.getItem(`bills_${currentUser.username}`)) || [];
+            // Load and filter boarder bills
+            let boarderBills = JSON.parse(localStorage.getItem(`bills_${currentUser.username}`)) || [];
+            boarderBills = boarderBills.filter(bill => bill.boarder.toLowerCase().trim() !== nameToDelete);
+            localStorage.setItem(`bills_${currentUser.username}`, JSON.stringify(boarderBills));
 
-        // Filter out transactions and bills matching the boarder name
-        transactions = transactions.filter(tx => tx.person.toLowerCase().trim() !== nameToDelete);
-        boarderBills = boarderBills.filter(bill => bill.boarder.toLowerCase().trim() !== nameToDelete);
+            clearForm();
+            // 🔄 Re-sync the global variables from localStorage
+            boarders = JSON.parse(localStorage.getItem(`boarders_${currentUser.username}`)) || [];
 
-        // Save updated lists
-        localStorage.setItem(`transactions_${currentUser.username}`, JSON.stringify(transactions));
-        localStorage.setItem(`bills_${currentUser.username}`, JSON.stringify(boarderBills));
+            transactions = JSON.parse(localStorage.getItem(`transactions_${currentUser.username}`)) || [];
 
+            boarderBills = JSON.parse(localStorage.getItem(`bills_${currentUser.username}`)) || [];
 
-        // 🔄 Reload the updated boarderBills before rendering
-        boarderBills = JSON.parse(localStorage.getItem(`bills_${currentUser.username}`)) || [];
-        // Clear the form and update the tables
-        clearForm();
-        renderTable();
+            // Re-render all relevant tables
+            renderTable();
+            renderBillTable();
+            renderTransactionsTable();
+            autoMatchTransactionsToBills();
+            updateKPICards();
+            loadBoardersDropdown();
 
-        // autoMatchTransactionsToBills();
-        // localStorage.setItem(`bills_${currentUser.username}`, JSON.stringify(boarderBills));
-
-        renderBillTable();
-        renderTransactionsTable();
-        
-        updateKPICards();
-        loadBoardersDropdown();
-
-        addActivityLog("Deleted Boarder", `Boarder: ${boarderToDelete.name}, Room: ${boarderToDelete.room}`);
-        alert("Boarder and related data successfully deleted.");
-    }
-};
+            addActivityLog("Deleted Boarder", `Boarder: ${boarderToDelete.name}, Room: ${boarderToDelete.room}`);
+            alert("Boarder and related data successfully deleted.");
+        }
+    };
+});
 
 ////////// clearing form fields  ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -238,6 +238,7 @@ function fillForm(boarder, rowElement) {
 ////////// render boarder table ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function renderTable() {
+
     tableBody.innerHTML = "";
 
     if (boarders.length === 0) {
@@ -287,6 +288,3 @@ function filterBoarders() {
         }
     });
 }
-
-// Initialize the table
-renderTable();

@@ -141,5 +141,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-renderActivityLog()
-updateKPICards()
+// Initialization
+
+renderActivityLog();
+updateKPICards();
+
+renderTable();
+renderBillTable();
+renderTransactionsTable();
+
+autoMatchTransactionsToBills();
+
+loadBoardersForBills();
+loadBoardersDropdown();
+

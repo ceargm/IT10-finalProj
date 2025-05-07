@@ -11,6 +11,12 @@ const dropdownBillBoarder = document.getElementById("billBoarder");
 
 let selectedBillRow = null;
 
+////////// save boarder bills to local storage ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function saveBoarderBills() {
+    localStorage.setItem(`bills_${currentUser.username}`, JSON.stringify(boarderBills));
+}
+
 ////////// adding a boarder bill ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 addBillBtn.onclick = function () {
@@ -73,17 +79,25 @@ editBillBtn.onclick = function () {
 
     if (!boarder || !billType || isNaN(amount)) return alert("Please fill out boarder, billType and amount fields first.");
 
-    if (!confirm("Are you sure you want to edit this bill?")) return;
+    // Check if there's no changes in the form
+    if (originalBill.month === billMonthInput && originalBill.boarder === boarder &&
+        originalBill.billType === billType && originalBill.amount === amount) {
+        return alert("No changes made to the transaction.");
+    }
 
+    
+
+    // Log the changes
     let logMessage = `Updated bill for ${boarder} (Bill Type: ${billType}, Month: ${billMonthInput})`;
     if (originalBill.amount !== amount) logMessage += `, Amount: ₱${originalBill.amount} → ₱${amount}`;
-
     const paid = originalBill.paidAmount || 0;
     const status = paid >= amount ? "paid" : paid > 0 ? "partial" : "unpaid";
     if (originalBill.status !== status) logMessage += `, Status: ${originalBill.status} → ${status}`;
 
     boarderBills[selectedBillRow].amount = amount;
     boarderBills[selectedBillRow].status = status;
+
+    if (!confirm("Are you sure you want to edit this bill?")) return;
 
     saveBoarderBills();
     renderBillTable();
@@ -102,13 +116,13 @@ editBillBtn.onclick = function () {
 ////////// deleting a boarder bill ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 deleteBillBtn.onclick = function () {
-    if (!selectedBillRow) return alert("Please select a bill from the table to delete.");
+    if (selectedBillRow === null) return alert("Please select a bill from the table to delete.");
 
     const boarder = document.getElementById("billBoarder").value;
     const billType = document.getElementById("billType").value.toLowerCase();
     const billMonth = document.getElementById("billMonth").value;
 
-    const selectedBillRow = boarderBills.findIndex(bill =>
+    selectedBillRow = boarderBills.findIndex(bill =>
         bill.boarder === boarder &&
         bill.billType === billType &&
         bill.month === billMonth
@@ -171,7 +185,6 @@ function loadBoardersForBills() {
     dropdownBillBoarder.innerHTML = `<option value="" disabled selected>Select Boarder</option>`;
 
     const boarders = JSON.parse(localStorage.getItem(`boarders_${currentUser.username}`)) || [];
-    if (boarders.length === 0) return console.warn("No boarders found in the system.");
 
     boarders.forEach(b => {
         const option = document.createElement("option");
@@ -179,12 +192,6 @@ function loadBoardersForBills() {
         option.textContent = b.name;
         dropdownBillBoarder.appendChild(option);
     });
-}
-
-////////// save boarder bills to local storage ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function saveBoarderBills() {
-    localStorage.setItem(`bills_${currentUser.username}`, JSON.stringify(boarderBills));
 }
 
 ////////// fill form with boarder bill details ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -205,6 +212,7 @@ function fillBillForm(bill, rowElement) {
 ////////// render boarder bill table ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function renderBillTable() {
+    
     billTableBody.innerHTML = "";
 
     if (boarderBills.length === 0) {
@@ -316,10 +324,5 @@ function autoMatchTransactionsToBills() {
     loadBoardersForBills();
     loadBoardersDropdown();
 }
-
-
-
-// Initialization
-renderBillTable();
 
 
