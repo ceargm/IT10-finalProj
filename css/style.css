@@ -1,44 +1,44 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0rem;
+  padding: 0;
   font-family: "Segoe UI", sans-serif;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
-
-
-
+  scrollbar-color: rgba(255, 255, 255, 0.075) transparent;
 }
 
-
+html,body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #084888cb;
+}
 body {
+  background-image: url('assets/2.jpg');
   height: 100vh;
   display: flex;
-
-  background-image: url('assets/2.jpg');
   background-size: cover;
   /* Makes the image cover the whole background */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   /* Prevents the image from repeating */
   background-position: center;
   /* Centers the image */
-
   justify-content: center;
   align-items: center;
-  /* padding: 10px;
-  overflow-y: auto; */
 }
 
 /*----------------------------------------------------------------------------------------- */
 
 .login-container {
 
-  background: transparent;
+  
+  background: #061e53af;
   padding: 2rem 2.5rem;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 350px;
+
   /* overflow-y: auto; */
 }
 
@@ -55,7 +55,7 @@ body {
 h2,
 .main-container1 h1,
 h2 {
-  color: #d3e9ff;
+  color: #e9f4ff;
   text-align: center;
 }
 
@@ -64,20 +64,20 @@ h2 {
   text-align: left;
   margin-top: 0.95rem;
   margin-bottom: 0.95rem;
-  color: #d3e9ff;
+  color: #e9f4ff;
   font-size: 0.95rem;
   width: 100%;
 }
 
 .login-form input::placeholder {
-  color: #c0defc;
+  color: #e9f4ff;
   opacity: 0.6;
   font-size: 0.9rem;
 }
 
 .login-form input {
   outline: none;
-  color: #c0defc;
+  color: #e9f4ff;
   background-color: #0353a4;
   background: transparent;
   width: 100%;
@@ -86,18 +86,10 @@ h2 {
   border-radius: 8px;
   font-size: 0.9rem;
   transition: border 0.3s;
-
-  /* padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  transition: border 0.3s;
-  padding: 10px;
-  width: 300px; */
 }
 
 .login-form input:focus {
-  border: 2px solid #c0defc;
+  border: 2px solid #e9f4ff;
 
 
 }
@@ -108,7 +100,7 @@ h2 {
   border: none;
   background-color: #023e7d;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  color: #c0defc;
+  color: #e9f4ff;
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
@@ -122,12 +114,12 @@ h2 {
 
 .login-form button:hover {
   background-color: #0353a4;
-  color: #d3e9ff;
+  color: #e9f4ff;
 }
 
 .signup-text,
 .login-text {
-  color: #c0defc;
+  color: #e9f4ff;
   text-align: center;
   margin-top: 0.5rem;
   font-size: 0.9rem;
@@ -135,7 +127,7 @@ h2 {
 
 .signup-text a {
   text-decoration: none;
-  color: #d3e9ff;
+  color: #e9f4ff;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -170,9 +162,7 @@ h2 {
   padding: 2rem 2.5rem;
   border-radius: 12px;
   /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
-
   /* background: linear-gradient(150deg, #010b15, #011627, #023e7d, #0353a4, #0466c8, #2b8fd8); */
-
   max-width: 1000px;
   max-height: 100vh;
   overflow: auto;
@@ -217,7 +207,7 @@ h2 {
 /*----------------------------------------------------------------------------------------- */
 
 .textDescription {
-  color: #c0defc;
+  color: #e9f4ff;
   text-align: center;
   margin-top: 0.5rem;
   font-size: 0.9rem;
@@ -226,14 +216,14 @@ h2 {
 .toggleTips {
   cursor: pointer;
   text-decoration: none;
-  color: #c0defc;
+  color: #d5d82b;
 
 }
 
 .toggleTips:hover {
   text-decoration: underline;
   font-weight: bold;
-  color: #d5d82b;
+  color: #45ec6fc0;
 }
 
 .tipsContent {
@@ -278,13 +268,13 @@ h2 {
   text-align: left;
   margin-top: 0.95rem;
   margin-bottom: 0.95rem;
-  color: #d3e9ff;
+  color: #e9f4ff;
   font-size: 0.95rem;
   width: 100%;
 } */
 
 .here input::placeholder {
-  color: #c0defc;
+  color: #e9f4ff;
   opacity: 0.9;
   font-size: 0.9rem;
   font-weight: 400;
@@ -299,7 +289,7 @@ h2 {
 
 .here select {
   outline: none;
-  color: #c0defc;
+  color: #e9f4ff;
   background-color: #0353a4;
   background: transparent;
   padding: 10px;
@@ -320,7 +310,7 @@ h2 {
 .here input[type="month"] {
 
   outline: none;
-  color: #c0defc;
+  color: #e9f4ff;
   background-color: #0353a4;
   background: transparent;
   padding: 10px;
@@ -339,7 +329,7 @@ h2 {
 .here input[type="tel"]:focus,
 .here input[type="number"]:focus,
 .here input[type="month"] {
-  border: 2px solid #c0defc;
+  border: 2px solid #e9f4ff;
   background-color: #0353a4;
   background: transparent;
   font-size: 0.9rem;
@@ -351,7 +341,7 @@ h2 {
 .here input[type="tel"]:focus::placeholder,
 .here input[type="number"]:focus::placeholder,
 .here input[type="month"] {
-  color: #c0defc;
+  color: #e9f4ff;
   opacity: 0.9r;
   font-size: 0.9rem;
 
@@ -379,8 +369,8 @@ h2 {
   /* Centers the container */
   padding: 0.5rem;
   border-radius: 8px;
-  border-bottom: 2px solid #c0defc;
-  border-top: 2px solid #c0defc;
+  border-bottom: 2px solid #2b8fd8;
+  border-top: 2px solid #2b8fd8;
 
 
 
@@ -501,8 +491,8 @@ h2 {
   padding: 1rem;
   border-radius: 8px;
   /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); */
-  border-bottom: 3px solid #c0defc5d;
-  border-top: 3px solid #c0defc5d;
+  border-bottom: 3px solid #e9f4ff5d;
+  border-top: 3px solid #e9f4ff5d;
 
 }
 
@@ -515,16 +505,16 @@ h2 {
   width: 100%;
   max-width: 100%;
   text-align: center;
-  color: #d3e9ff;
+  color: #e9f4ff;
   background: transparent;
 
-  border-color: #d3e9ff;
+  border-color: #e9f4ff;
   font-size: 1.5rem;
   /* margin-top: 0.5rem;
   margin-bottom: 1.5rem; */
   /* margin: 0rem 0; */
   padding-top: 0rem;
-  /* border-bottom: 2px solid #d3e9ff79;  */
+  /* border-bottom: 2px solid #e9f4ff79;  */
   transition: background-color 0.3s ease, transform 0.2s ease;
 
 }
@@ -551,7 +541,7 @@ h2 {
 
 .manage-boarder-buttons input[type="text"] {
   outline: none;
-  color: #c0defc;
+  color: #e9f4ff;
   background-color: #0353a4;
   background: transparent;
   padding: 10px;
@@ -565,13 +555,13 @@ h2 {
 }
 
 .manage-boarder-buttons input[type="text"]:focus {
-  border: 2px solid #c0defc;
+  border: 2px solid #e9f4ff;
   background-color: #0353a4;
   background: transparent;
 }
 
 .manage-boarder-buttons input[type="text"]::placeholder {
-  color: #c0defc;
+  color: #e9f4ff;
   opacity: 0.9;
   font-size: 0.9rem;
 }
@@ -593,7 +583,7 @@ h2 {
 }
 
 .manage-boarder-buttons button:enabled:hover {
-  background-color: #2b8fd8;
+  background-color: #45ec6fc0;
   transform: scale(1.05);
   /* Slight zoom effect */
 }
@@ -698,7 +688,7 @@ button:hover {
 }
 
 .kpi-card:hover {
-  background-color: #2b96b1;
+  background-color: #2f62cfbe;
   transform: scale(1.05);
 }
 
@@ -710,4 +700,87 @@ button:hover {
 .kpi-card p {
   font-size: 20px;
   font-weight: bold;
+}
+
+/*////////////////////////////////////////////*/
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  transition: border 0.3s;
+  border-bottom: 3px solid #e9f4ff5d;
+  border-top: 3px solid #e9f4ff5d;
+
+  background: #10327c98;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 1000px;
+  max-height: 100vh;
+  overflow: auto;
+  justify-content: center;
+  text-align: center;
+  backdrop-filter: blur(50px);
+
+}
+
+.modal-box h2 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #e9f4ff;
+}
+
+.modal-box p {
+  margin-top: 20px;
+  color: #e9f4ff;
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal-actions button {
+  width: 100px;
+  max-width: 150px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-ok {
+
+  margin: 0.3rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  /* background-color: #45ec6fc0; */
+  color: white;
+}
+
+.btn-ok:hover{
+  background-color: #45ec6fc0;
+  transform: scale(1.05);
+  /* Slight zoom effect */
+}
+
+.btn-cancel {
+  background-color: #ccc;
+  color: #333;
 }

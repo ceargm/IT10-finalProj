@@ -210,9 +210,8 @@ function fillBillForm(bill, rowElement) {
 }
 
 ////////// render boarder bill table ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 function renderBillTable() {
-    
+    const boarderBills = JSON.parse(localStorage.getItem(`bills_${currentUser.username}`)) || [];
     billTableBody.innerHTML = "";
 
     if (boarderBills.length === 0) {
@@ -241,7 +240,6 @@ function renderBillTable() {
         };
         billTableBody.appendChild(row);
     });
-    
 }
 
 ////////// search / filter ////////////////////////////////////////////////////////////////////////////////////////////////////////

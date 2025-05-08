@@ -1,5 +1,4 @@
 
-
 function updateKPICards() {
     const boarders = JSON.parse(localStorage.getItem(`boarders_${currentUser.username}`)) || [];
     const transactions = JSON.parse(localStorage.getItem(`transactions_${currentUser.username}`)) || [];
@@ -82,8 +81,6 @@ function renderActivityLog() {
 }
 
 
-
-
 function loadOutstandingBalances(selectedMonth) {
     const bills = JSON.parse(localStorage.getItem(`bills_${currentUser.username}`)) || [];
 
@@ -145,13 +142,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 renderActivityLog();
 updateKPICards();
+autoMatchTransactionsToBills();
 
 renderTable();
 renderBillTable();
 renderTransactionsTable();
-
-autoMatchTransactionsToBills();
-
 loadBoardersForBills();
 loadBoardersDropdown();
 

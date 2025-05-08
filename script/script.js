@@ -77,3 +77,53 @@ function isValidPhoneNumber(number) {
     const regex = /^09\d{9}$/; // starts with 09 and followed by 9 digits (total 11)
     return regex.test(number);
 }
+
+// custome modal
+
+function showModal(type, title, message, callback) {
+    const modal = document.getElementById("customModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMessage = document.getElementById("modalMessage");
+    const modalButtons = document.getElementById("modalButtons");
+  
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+    modalButtons.innerHTML = ''; // Clear previous buttons
+  
+    if (type === "alert") {
+      const okBtn = document.createElement("button");
+      okBtn.className = "btn-ok";
+      okBtn.textContent = "OK";
+      okBtn.onclick = () => {
+        closeModal();
+        if (callback) callback();
+      };
+      modalButtons.appendChild(okBtn);
+    } else if (type === "confirm") {
+      const cancelBtn = document.createElement("button");
+      cancelBtn.className = "btn-cancel";
+      cancelBtn.textContent = "Cancel";
+      cancelBtn.onclick = () => {
+        closeModal();
+        if (callback) callback(false);
+      };
+  
+      const okBtn = document.createElement("button");
+      okBtn.className = "btn-ok";
+      okBtn.textContent = "OK";
+      okBtn.onclick = () => {
+        closeModal();
+        if (callback) callback(true);
+      };
+  
+      modalButtons.appendChild(cancelBtn);
+      modalButtons.appendChild(okBtn);
+    }
+  
+    modal.style.display = "flex";
+  }
+  
+  function closeModal() {
+    document.getElementById("customModal").style.display = "none";
+  }
+  

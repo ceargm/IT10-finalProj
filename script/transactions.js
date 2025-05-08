@@ -44,7 +44,7 @@ addTransactionBtn.onclick = function () {
     renderTransactionsTable();
 
     autoMatchTransactionsToBills()
-    renderBillTable();
+    renderBillTable(); 
 
     updateKPICards(); // for overview section
     loadOutstandingBalances(month); // for overview section
@@ -107,7 +107,7 @@ editTransactionBtn.onclick = function () {
     clearTransactionForm();
 
     autoMatchTransactionsToBills();
-    localStorage.setItem(`bills_${currentUser.username}`, JSON.stringify(boarderBills));
+
 
     renderTable();
     renderBillTable();
@@ -248,12 +248,14 @@ function fillTransactionForm(transaction, rowElement) {
 
 ////////// render transaction table ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////// render transaction table ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function renderTransactionsTable() {
+    const transactions = JSON.parse(localStorage.getItem(`transactions_${currentUser.username}`)) || [];
     transactionTableBody.innerHTML = "";
 
     if (transactions.length === 0) {
         const row = document.createElement("tr");
-        row.innerHTML = `<td colspan="6" style="text-align: center;">No transactions yet</td>`;
+        row.innerHTML = `<td colspan="6" style="text-align:center;">No transactions yet</td>`;
         transactionTableBody.appendChild(row);
         return;
     }
@@ -267,7 +269,7 @@ function renderTransactionsTable() {
             <td>${transaction.particulars}</td>
             <td>₱${transaction.debit || "0"}</td>
             <td>₱${transaction.credit || "0"}</td>
-            <td>${transaction.month || ''}</td>
+            <td>${transaction.month || ""}</td>
         `;
 
         row.onclick = function () {

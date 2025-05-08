@@ -3,17 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>BHMS - Dashboard</title>
+    <title>BHSync - Everything You Need to Manage Your Boarding House, All in One Place.</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="css/assets/logo.png">
 </head>
 
 <body>
     <div class="main-container1">
-        
-        <h1 class="title">Welcome to BHMS Dashboard</h1>
+
+        <h1 class="title">Welcome to BHSync</h1>
         <p class="textDescription">
-            Welcome, <span id="usernameDisplay" style="color: #d3e9ff; font-weight: bold; font-size: 15px ;"></span>!
-            This app will help you manage boarders, bills, logs, and transactions with ease.
+            Welcome, <span id="usernameDisplay" style="color: #e9f4ff; font-weight: bold; font-size: 15px ;"></span>!
+            Click the tabs below to easily manage your boarding house operations.
         </p>
 
         <!-- Menu Tabs -->
@@ -28,10 +29,9 @@
         <!-- Overview Section -->
         <div id="overview" class="card-section">
             <div class="main-container">
-                <h2>BOARDING HOUSE OVERVIEW</h2>
+                <h2>📊 BOARDING HOUSE OVERVIEW</h2>
                 <p class="textDescription">
-                    A real-time summary of boarding house operations.</p>
-
+                    A real-time summary of your boarding house's key metrics.</p>
 
                 <!-- ✅ KPI Cards Start -->
                 <div class="here">
@@ -69,8 +69,8 @@
                 <div class="here">
                     <h2>💳 OUTSTANDING BALANCES PER BOARDER</h2>
                     <div class="textDescription">
-                        View each boarder's unpaid bill balances for a selected month. Use the filter below to explore
-                        specific periods. <br>
+                        View each boarder's outstanding bill balances for the selected month. Use the filter below to
+                        explore specific periods.<br>
                         <label for="monthSelector"><strong>Select Month:</strong></label>
                         <input type="month" id="monthSelector">
                     </div>
@@ -96,9 +96,8 @@
                 <div class="here">
                     <!-- Recent Activity Log -->
                     <h2>📜 RECENT ACTIVITY LOG</h2>
-                    <p class="textDescription">Below are the most recent actions performed in the system, including
-                        billing
-                        updates, boarder changes, and transactions.</p>
+                    <p class="textDescription"> Below are the most recent actions performed in the system, including
+                        billing updates, boarder changes, and transactions.</p>
                     <div class="manage-boarder-table">
                         <table>
                             <thead>
@@ -123,8 +122,8 @@
         <div id="boarders" class="card-section">
 
             <div class="main-container">
-                <h2>MANAGE BOARDERS</h2>
-                <p class="textDescription" style="padding-bottom: 1rem;">Add, edit, or manage your boarders and their
+                <h2>👥 MANAGE BOARDERS</h2>
+                <p class="textDescription" style="padding-bottom: 5px;">Add, edit, or manage your boarders and their
                     details here.</p>
 
                 <div class="here">
@@ -150,7 +149,8 @@
             </div>
             <div class="main-container">
                 <h2>BOARDER LIST</h2>
-                <p class="textDescription">View and manage all boarders in the system. You can search by name, room, or
+                <p class="textDescription" style="padding-bottom: 5px;">View and manage all boarders in the system. You
+                    can search by name, room, or
                     contact number.</p>
 
                 <div class="manage-boarder-buttons">
@@ -187,16 +187,17 @@
             <div class="main-container">
                 <h2>MANAGE TRANSACTIONS</h2>
                 <div class="here">
-                    <div class="textDescription">
-                        Track and manage all income and expense transactions here.
+                    <div class="textDescription" style="padding-bottom: 5px;">
+                        Record transactions and activities here, including payments and actions.
                         💡 <strong class="toggleTips" onclick="toggleTips('transactionDesc') ">Click Here to View
                             Guide.</strong>
                         <div id="transactionDesc" class="tipsContent">
                             When logging payments, make sure the
                             <em>Particulars</em>
-                            include words like <strong>rent</strong>, <strong>water</strong>, <strong>electric</strong>,
+                            include words like <strong>rent</strong>, <strong>water</strong>,
+                            <strong>electricity</strong>,
                             or
-                            <strong>internet</strong>.
+                            <strong>internet</strong>, so they will be included in the auto-log bills.
                         </div>
                     </div>
                 </div>
@@ -229,8 +230,8 @@
             <div class="main-container">
                 <div class="here">
                     <h2>TRANSACTIONS LIST</h2>
-                    <div class="textDescription">
-                        View and manage all transactions in the system.
+                    <div class="textDescription" style="padding-bottom: 5px;">
+                        View and manage all transactions/activities in the system.
                         🔍 <strong class="toggleTips" onclick="toggleTips('transactionTips')">Click Here to View Search
                             Tips.</strong>
                         <div id="transactionTips" class="tipsContent">
@@ -272,80 +273,93 @@
         <!-- Boarder Bill Section -->
         <div id="boarder-bill" class="card-section">
             <div class="main-container">
-            <h2>CREATE BOARDER BILL</h2>
-            <p class="textDescription">Input monthly bills for each boarder. Bills will be logged as unpaid
-                transactions.</p>
+                <h2>🧾 CREATE BOARDER BILL</h2>
+                <p class="textDescription" style="padding-bottom: 5px;">Input monthly bills for each boarder. Bills will
+                    be logged as unpaid
+                    transactions.</p>
 
-            <div class="here">
-                <form id="billForm">
-                    <input type="month" id="billMonth" required>
-                    <select id="billBoarder" required>
-                        <option value="" disabled selected>Select Boarder</option>
-                        <!-- Options populated via JS -->
-                    </select>
-                    <select id="billType" required>
-                        <option value="" disabled selected>Select Bill Type</option>
-                        <option value="rent">Rent</option>
-                        <option value="water">Water</option>
-                        <option value="internet">Internet</option>
-                        <option value="electric">Electric</option>
-                    </select>
-                    <input type="number" id="billAmount" placeholder="Enter Bill Amount" min="0" required>
-                </form>
+                <div class="here">
+                    <form id="billForm">
+                        <input type="month" id="billMonth" required>
+                        <select id="billBoarder" required>
+                            <option value="" disabled selected>Select Boarder</option>
+                            <!-- Options populated via JS -->
+                        </select>
+                        <select id="billType" required>
+                            <option value="" disabled selected>Select Bill Type</option>
+                            <option value="rent">Rent</option>
+                            <option value="water">Water</option>
+                            <option value="internet">Internet</option>
+                            <option value="electricity">Electricity</option>
+                        </select>
+                        <input type="number" id="billAmount" placeholder="Enter Bill Amount" min="0" required>
+                    </form>
 
-                <div class="manage-boarder-buttons">
-                    <button type="button" id="addBill">Create Bill</button>
-                    <button type="button" id="editBill">Edit Bill</button>
-                    <button type="button" id="deleteBill">Delete Bill</button>
-                    <button type="button" id ="clearBill">Clear Fields</button>
+                    <div class="manage-boarder-buttons">
+                        <button type="button" id="addBill">Create Bill</button>
+                        <button type="button" id="editBill">Edit Bill</button>
+                        <button type="button" id="deleteBill">Delete Bill</button>
+                        <button type="button" id="clearBill">Clear Fields</button>
 
-                </div>
-            </div>
-
-        </div>
-        <div class="main-container">
-            <div class="here">
-                <h2>BOARDER BILL LIST</h2>
-                <div class="textDescription">
-                    Below are the auto-logged bill entries for boarders and their payment statuses.
-                    🔍 <strong class="toggleTips" onclick="toggleTips('billTips')">Click Here to View Search
-                        Tips.</strong>
-                    <div id="billTips" class="tipsContent">
-                        Use the search bar to filter using <strong>multiple keywords</strong> like:
-                        anna rent unpaid <strong> OR </strong>internet april <br>
-                        The list will update to show results that match <strong>all</strong> the terms you enter.
                     </div>
                 </div>
+
             </div>
+            <div class="main-container">
+                <div class="here">
+                    <h2>BOARDER BILL LIST</h2>
+                    <div class="textDescription" style="padding-bottom: 5px;">
+                        Below are the auto-logged bill entries for boarders and their payment statuses.
+                        🔍 <strong class="toggleTips" onclick="toggleTips('billTips')">Click Here to View Search
+                            Tips.</strong>
+                        <div id="billTips" class="tipsContent">
+                            Use the search bar to filter using <strong>multiple keywords</strong> like:
+                            anna rent unpaid <strong> OR </strong>internet april <br>
+                            The list will update to show results that match <strong>all</strong> the terms you enter.
+                        </div>
+                    </div>
+                </div>
 
 
-            <div class="manage-boarder-buttons">
-                <input type="text" id="searchBill" placeholder="Search by boarder, bill type, status, or month"
-                    oninput="filterBoarderBills()" />
+                <div class="manage-boarder-buttons">
+                    <input type="text" id="searchBill" placeholder="Search by boarder, bill type, status, or month"
+                        oninput="filterBoarderBills()" />
+                </div>
+
+                <div class="manage-boarder-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Boarder</th>
+                                <th>Bill Type</th>
+                                <th>Amount</th>
+                                <th>Paid Amount</th>
+                                <th>Status</th>
+                                <th>Month</th>
+                            </tr>
+                        </thead>
+                        <tbody id="billTableBody">
+                            <tr>
+                                <td colspan="6" style="text-align: center;">No bills logged yet</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
+        </div> <!-- End of boarder bill section -->
 
-            <div class="manage-boarder-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Boarder</th>
-                            <th>Bill Type</th>
-                            <th>Amount</th>
-                            <th>Paid Amount</th>
-                            <th>Status</th>
-                            <th>Month</th>
-                        </tr>
-                    </thead>
-                    <tbody id="billTableBody">
-                        <tr>
-                            <td colspan="6" style="text-align: center;">No bills logged yet</td>
-                        </tr>
-
-                    </tbody>
-                </table>
+        <!-- Reusable Alert/Confirm Modal -->
+        <div id="customModal" class="modal-overlay">
+            <div class="modal-box">
+                <h2 id="modalTitle">Title</h2>
+                <p id="modalMessage">Message goes here...</p>
+                <div class="modal-actions" id="modalButtons">
+                    <!-- Buttons injected by JS -->
+                </div>
             </div>
         </div>
-        </div> <!-- End of boarder bill section -->
+
 
     </div> <!-- End of main-container -->
 
