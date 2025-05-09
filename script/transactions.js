@@ -20,17 +20,18 @@ addTransactionBtn.onclick = function () {
     const month = document.getElementById("transactionMonth").value;
 
     if (!date || !person || !particulars) {
-        return alert("Please fill out date, person, and particular fields first.");
+        return showModal("alert", "Empty Fields", "Please fill out date, person, and particulars fields first.");
     }
 
     if (!isValidDateFormat(date)) {
-        return alert("Please enter a valid date (YYYY/MM/DD) and ensure the date is not greater than today's date");
+        return showModal("alert", "Invalid Date", "Please enter a valid date (YYYY/MM/DD) and ensure the date is not greater than today's date.");
     }
 
     if (!month) {
-        return alert("Please select the transaction month.");
+        return showModal("show", "","Please select the transaction month.");
     }
 
+    
     if (!confirm("Are you sure you want to add this transaction?")) return;
 
     const newTransaction = { date, person, particulars, debit, credit, month };
@@ -246,7 +247,6 @@ function fillTransactionForm(transaction, rowElement) {
     if (rowElement) rowElement.classList.add("selected-row");
 }
 
-////////// render transaction table ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////// render transaction table ////////////////////////////////////////////////////////////////////////////////////////////////////////
 function renderTransactionsTable() {

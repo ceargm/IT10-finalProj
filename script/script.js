@@ -23,8 +23,6 @@ function showSection(id) {
     }
 }
 
-
-
 // Get current logged-in user from localStorage
 let currentUser = JSON.parse(localStorage.getItem('bhmsUser')) || null;
 if (!currentUser) {
@@ -38,12 +36,13 @@ document.getElementById("usernameDisplay").textContent = currentUser.username;
 
 function logout() {
     //check if the user really wants to logout
-    if (confirm("Are you sure you want to logout?")) {
+    showModal("confirm","Logout", "Are you sure you want to logout?", (confirmed) => {
+    if (!confirmed) return;
         // Clear user data from local storage or session storage
         localStorage.removeItem("bhmsUser"); // if you're using localStorage
         // Redirect to login page
         window.location.href = 'login.html';
-    }
+    });
 }
 
 function toggleTips(id) {

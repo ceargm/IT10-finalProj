@@ -1,6 +1,5 @@
-
 // Manage Boarders Section
-// Use a unique key for each user's boarders
+// Data is saved using a unique key for each user
 let boarders = JSON.parse(localStorage.getItem(`boarders_${currentUser.username}`)) || [];
 const tableBody = document.getElementById("boardersBody");
 const addBtn = document.getElementById("addB");
@@ -10,9 +9,10 @@ const clearBtn = document.getElementById("clearF");
 
 let selectedRow = null;
 
-////////// adding a boarder ////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////// ADD BOARDER ////////////////////
 
 addBtn.onclick = function () {
+    // Get values from input fields
     const room = document.getElementById("room").value.trim();
     const name = document.getElementById("boarderName").value.trim();
     const movedInDate = document.getElementById("movedInDate").value.trim();
@@ -20,63 +20,62 @@ addBtn.onclick = function () {
     const address = document.getElementById("address").value.trim();
     const phone = document.getElementById("contactNumber").value.trim();
 
-    // check if any fields are empty
+    // Check if any input is empty
     if (!room || !name || !movedInDate || !birthDate || !address || !phone) {
-        return showModal("alert", "", "Please fill out all fields first.");
+        return showModal("alert", "Empty Fields", "Please fill out all fields first.");
     }
 
-    // Validate Date and Phone Number
+    // Validate dates and phone number
     if (!isValidDateFormat(movedInDate)) {
-        return alert("Please enter a valid 'MOVED-IN DATE' (YYYY/MM/DD) and ensure the date is not greater than today's date");
+        return showModal("alert", "Invalid ate", "Please enter a valid 'MOVED-IN DATE' (YYYY/MM/DD) and ensure the date is not greater than today's date.");
     }
 
     if (!isValidDateFormat(birthDate)) {
-        return alert("Please enter a valid 'BIRTHDATE' (YYYY/MM/DD) and ensure the date is not greater than today's date");
+        return showModal("alert", "Invalid Date", "Please enter a valid 'BIRTHDATE' (YYYY/MM/DD) and ensure the date is not greater than today's date.");
     }
 
     if (!isValidPhoneNumber(phone)) {
-        return alert("Please enter a valid phone number (starts with 09 and followed by 9 digits).");
+        return showModal("alert", "Invalid Phone Number", "Please enter a valid phone number (starts with 09 and followed by 9 digits).");
     }
 
-    //check if the boarder name already exists
+    // Check if the name already exists
     const boarderExists = boarders.some(boarder => boarder.name.toLowerCase() === name.toLowerCase());
     if (boarderExists) {
-        return alert("Boarder with this name already exists.");
+        return showModal("alert", "Boarder Name Exists", "Boarder with this name already exists.");
     }
 
-    if (!confirm("Are you sure you want to add this boarder?")) return;
+    // Ask user to confirm adding
+    showModal("confirm", "Confirm Add", "Are you sure you want to add this boarder?", (confirmed) => {
+        if (!confirmed) return;
 
-    const newBoarder = { room, name, movedIn: movedInDate, birthDate, address, phone };
-    boarders.push(newBoarder);
+        const newBoarder = { room, name, movedIn: movedInDate, birthDate, address, phone };
+        boarders.push(newBoarder);
 
-    // Save updated data
-    saveBoarders();
+        saveBoarders();
+        clearForm();
+        renderTable();
+        renderTransactionsTable();
+        renderBillTable();
+        autoMatchTransactionsToBills();
+        updateKPICards();
+        loadBoardersForBills();
+        loadBoardersDropdown();
 
-    // Clear the form and update the tables
-    clearForm();
-    renderTable();
-
-    renderTransactionsTable();
-    renderBillTable();
-    autoMatchTransactionsToBills();
-
-    updateKPICards(); // for overview section
-
-    loadBoardersForBills();
-    loadBoardersDropdown();
-
-    addActivityLog("Added Boarder", `Boarder: ${name}, Room: ${room}, Moved In: ${movedInDate}`);
-    alert("Boarder has been added successfully.");
+        addActivityLog("Added Boarder", `Boarder: ${name}, Room: ${room}, Moved In: ${movedInDate}`);
+        showModal("alert", "Boarder Added", "Boarder has been added successfully.");
+    });
 };
 
-////////// editing a boarder ////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////// EDIT BOARDER ////////////////////
 
 editBtn.onclick = function () {
-    if (selectedRow === null) return alert("Please click a row to select a boarder from the table.");
+    if (selectedRow === null) {
+        return showModal("alert", "Select a Row", "Please click a row to select a boarder from the table.");
+    }
 
-    // Get the current (original) boarder data from selectedRow
     const originalBoarder = boarders[selectedRow];
 
+    // Get updated values
     const room = document.getElementById("room").value.trim();
     const name = document.getElementById("boarderName").value.trim();
     const movedInDate = document.getElementById("movedInDate").value.trim();
@@ -84,114 +83,105 @@ editBtn.onclick = function () {
     const address = document.getElementById("address").value.trim();
     const phone = document.getElementById("contactNumber").value.trim();
 
-    // Validate Date and Phone Number
+    // Validate again
     if (!isValidDateFormat(movedInDate)) {
-        return alert("Please enter a valid 'Moved In' date (YYYY/MM/DD).");
+        return showModal("alert", "Invalid Date", "Please enter a valid 'Moved In' date (YYYY/MM/DD).");
     }
 
     if (!isValidDateFormat(birthDate)) {
-        return alert("Please enter a valid 'Birth Date' (YYYY/MM/DD).");
+        return showModal("alert", "Invalid Date", "Please enter a valid 'Birth Date' (YYYY/MM/DD).");
     }
 
     if (!isValidPhoneNumber(phone)) {
-        return alert("Please enter a valid phone number (starts with 09 and followed by 9 digits).");
+        return showModal("alert", "Invalid Phone Number", "Please enter a valid phone number (starts with 09 and followed by 9 digits).");
     }
 
-    // Check if there's no changes in the form
-    if (originalBoarder.room === room && originalBoarder.name === name && originalBoarder.movedIn === movedInDate && originalBoarder.birthDate === birthDate && originalBoarder.address === address && originalBoarder.phone === phone) {
-        return alert("No changes made to the form.");
+    // If no changes were made
+    if (
+        originalBoarder.room === room &&
+        originalBoarder.name === name &&
+        originalBoarder.movedIn === movedInDate &&
+        originalBoarder.birthDate === birthDate &&
+        originalBoarder.address === address &&
+        originalBoarder.phone === phone
+    ) {
+        return showModal("alert", "No Changes Made", "No changes made to the form.");
     }
 
-    if (!confirm("Are you sure you want to edit this boarder?")) return;
+    // Ask user to confirm edit
+    showModal("confirm", "Confirm Edit", "Are you sure you want to edit this boarder?", (confirmed) => {
+        if (!confirmed) return;
 
-    // Log the changes
-    let logMessage = `Updated boarder: ${name} (Room: ${room})`;
-    if (originalBoarder.room !== room) logMessage += `, Room: ${originalBoarder.room} → ${room}`;
-    if (originalBoarder.movedIn !== movedInDate) logMessage += `, Moved In: ${originalBoarder.movedIn} → ${movedInDate}`;
-    if (originalBoarder.birthDate !== birthDate) logMessage += `, Birth Date: ${originalBoarder.birthDate} → ${birthDate}`;
-    if (originalBoarder.address !== address) logMessage += `, Address: ${originalBoarder.address} → ${address}`;
-    if (originalBoarder.phone !== phone) logMessage += `, Phone: ${originalBoarder.phone} → ${phone}`;
+        // Track what was changed
+        let logMessage = `Updated boarder: ${name} (Room: ${room})`;
+        if (originalBoarder.room !== room) logMessage += `, Room: ${originalBoarder.room} → ${room}`;
+        if (originalBoarder.movedIn !== movedInDate) logMessage += `, Moved In: ${originalBoarder.movedIn} → ${movedInDate}`;
+        if (originalBoarder.birthDate !== birthDate) logMessage += `, Birth Date: ${originalBoarder.birthDate} → ${birthDate}`;
+        if (originalBoarder.address !== address) logMessage += `, Address: ${originalBoarder.address} → ${address}`;
+        if (originalBoarder.phone !== phone) logMessage += `, Phone: ${originalBoarder.phone} → ${phone}`;
 
-    addActivityLog("Edited Boarder", logMessage);
+        addActivityLog("Edited Boarder", logMessage);
 
-    // Save updated boarder data
-    boarders[selectedRow] = { room, name, movedIn: movedInDate, birthDate, address, phone };
-    // Save updated data
-    saveBoarders();
+        // Save changes
+        boarders[selectedRow] = { room, name, movedIn: movedInDate, birthDate, address, phone };
+        saveBoarders();
 
-    // Clear the form and update the tables
-    clearForm();
-    renderTable();
+        clearForm();
+        renderTable();
+        renderBillTable();
+        renderTransactionsTable();
+        autoMatchTransactionsToBills();
+        updateKPICards();
+        loadBoardersForBills();
+        loadBoardersDropdown();
 
-    renderBillTable();
-    renderTransactionsTable();
-    autoMatchTransactionsToBills();
-
-    updateKPICards();
-
-    loadBoardersForBills();
-    loadBoardersDropdown();
-
-    alert("Boarder details have been updated successfully.");
+        showModal("alert", "Update Successful", "Boarder details have been updated successfully.");
+    });
 };
 
+//////////////////// DELETE BOARDER ////////////////////
 
-///////// deleting a boarder ////////////////////////////////////////////////////////////////////////////////////////////////////////
 deleteBtn.onclick = function () {
-    if (selectedRow === null) return alert("Please select a boarder in the table to delete.");
+    if (selectedRow === null) {
+        return showModal("alert", "Select A Row", "Please select a boarder in the table to delete.");
+    }
 
     const boarderToDelete = boarders[selectedRow];
 
-    if (confirm(`Are you sure you want to delete the boarder ${boarderToDelete.name}? This will also delete all their transactions and bills.`)) {
-        // Delete boarder from list
+    // Ask user to confirm delete
+    showModal("confirm", "Confirm Delete", `Are you sure you want to delete ${boarderToDelete.name}? This will also delete all their transactions and bills.`, (confirmed) => {
+        if (!confirmed) return;
+
         boarders.splice(selectedRow, 1);
         saveBoarders();
 
-        // Normalize name for comparison
         const nameToDelete = boarderToDelete.name.toLowerCase().trim();
-
-        // Load and filter transactions
         let transactions = JSON.parse(localStorage.getItem(`transactions_${currentUser.username}`)) || [];
         let boarderBills = JSON.parse(localStorage.getItem(`bills_${currentUser.username}`)) || [];
 
         transactions = transactions.filter(tx => tx.person.toLowerCase().trim() !== nameToDelete);
         boarderBills = boarderBills.filter(bill => bill.boarder.toLowerCase().trim() !== nameToDelete);
-        
+
         localStorage.setItem(`transactions_${currentUser.username}`, JSON.stringify(transactions));
         localStorage.setItem(`bills_${currentUser.username}`, JSON.stringify(boarderBills));
-
-        // 🔄 Reload the updated boarderBills before rendering
-        // boarderBills = JSON.parse(localStorage.getItem(`bills_${currentUser.username}`)) || [];
-     
-        // boarders = JSON.parse(localStorage.getItem(`boarders_${currentUser.username}`)) || [];
-        // transactions = JSON.parse(localStorage.getItem(`transactions_${currentUser.username}`)) || [];
 
         clearForm();
         renderTable();
         autoMatchTransactionsToBills();
-        // localStorage.setItem(`bills_${currentUser.username}`, JSON.stringify(boarderBills));
-
-        // window.transactions = transactions;
-        // window.boarderBills = boarderBills;
         renderBillTable();
         renderTransactionsTable();
-
         updateKPICards();
         loadBoardersDropdown();
 
         addActivityLog("Deleted Boarder", `Boarder: ${boarderToDelete.name}, Room: ${boarderToDelete.room}`);
-        alert("Boarder and related data successfully deleted.");
-    }
-    // renderBillTable();
-    // renderTransactionsTable();
+        showModal("alert", "Delete Successful", "Boarder and related data successfully deleted.");
+    });
 };
 
-////////// clearing form fields  ////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////// CLEAR FORM ////////////////////
 
 clearBtn.onclick = function () {
     clearForm();
-    renderTable();
-
     renderTable();
     renderBillTable();
     autoMatchTransactionsToBills();
@@ -200,10 +190,17 @@ clearBtn.onclick = function () {
     renderTransactionsTable();
 };
 
+// Clear form inputs and reset selected row
 function clearForm() {
-    // check if the form is empty
-    if (!document.getElementById("room").value && !document.getElementById("boarderName").value && !document.getElementById("movedInDate").value && !document.getElementById("birthDate").value && !document.getElementById("address").value && !document.getElementById("contactNumber").value) {
-        return alert("Form is already empty.");
+    if (
+        !document.getElementById("room").value &&
+        !document.getElementById("boarderName").value &&
+        !document.getElementById("movedInDate").value &&
+        !document.getElementById("birthDate").value &&
+        !document.getElementById("address").value &&
+        !document.getElementById("contactNumber").value
+    ) {
+        return showModal("alert","", "Form is already empty.");
     }
 
     document.getElementById("room").value = "";
@@ -217,14 +214,12 @@ function clearForm() {
     document.getElementById("boarderName").disabled = false;
 }
 
-////////// save boarder to local storage ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// Save boarders to local storage
 function saveBoarders() {
     localStorage.setItem(`boarders_${currentUser.username}`, JSON.stringify(boarders));
 }
 
-////////// fill form with boarder details ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// Show data in form when a row is clicked
 function fillForm(boarder, rowElement) {
     document.getElementById("room").value = boarder.room;
     document.getElementById("boarderName").value = boarder.name;
@@ -237,8 +232,7 @@ function fillForm(boarder, rowElement) {
     if (rowElement) rowElement.classList.add("selected-row");
 }
 
-////////// render boarder table ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// Show list of boarders in the table
 function renderTable() {
     const boarders = JSON.parse(localStorage.getItem(`boarders_${currentUser.username}`)) || [];
     tableBody.innerHTML = "";
@@ -252,7 +246,6 @@ function renderTable() {
 
     boarders.forEach((boarder, index) => {
         const row = document.createElement("tr");
-
         row.innerHTML = `
             <td>${index + 1}</td>
             <td>${boarder.room}</td>
@@ -268,12 +261,12 @@ function renderTable() {
             fillForm(boarder, row);
             document.getElementById("boarderName").disabled = true;
         };
+
         tableBody.appendChild(row);
     });
 }
 
-////////// search / filter ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// Filter boarders as you type
 function filterBoarders() {
     const query = document.getElementById("searchBoarder").value.toLowerCase();
     const rows = document.querySelectorAll("#boardersBody tr");
@@ -284,7 +277,6 @@ function filterBoarders() {
             cell.textContent.toLowerCase().includes(query)
         );
 
-        // Hide row if no match found and it's not the "No boarders yet" row
         if (cells.length === 7) {
             row.style.display = match ? "" : "none";
         }

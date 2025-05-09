@@ -143,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function () {
 renderActivityLog();
 updateKPICards();
 autoMatchTransactionsToBills();
-
 renderTable();
 renderBillTable();
 renderTransactionsTable();

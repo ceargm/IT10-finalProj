@@ -96,10 +96,13 @@ editBillBtn.onclick = function () {
 
     boarderBills[selectedBillRow].amount = amount;
     boarderBills[selectedBillRow].status = status;
+    boarderBills[selectedBillRow].month = billMonthInput;
+
 
     if (!confirm("Are you sure you want to edit this bill?")) return;
 
     saveBoarderBills();
+
     renderBillTable();
     clearBillForm();
     updateKPICards();
@@ -254,7 +257,6 @@ function filterBoarderBills() {
             const searchable = `${bill.boarder} ${bill.billType} ${bill.status} ${bill.month}`.toLowerCase();
             return termsBill.every(term => searchable.includes(term));
         });
-
     renderFilteredBillTable(filteredB);
 }
 

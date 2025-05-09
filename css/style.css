@@ -98,7 +98,7 @@ h2 {
   width: 100%;
   padding: 0.75rem;
   border: none;
-  background-color: #023e7d;
+  background-color: #0353a4;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   color: #e9f4ff;
   font-size: 1rem;
@@ -108,12 +108,12 @@ h2 {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: transparent;
+  /* background: transparent; */
   transition: background-color 0.3s;
 }
 
 .login-form button:hover {
-  background-color: #0353a4;
+  background-color: #45ec6f75;
   color: #e9f4ff;
 }
 
@@ -718,7 +718,7 @@ button:hover {
   border-bottom: 3px solid #e9f4ff5d;
   border-top: 3px solid #e9f4ff5d;
 
-  background: #10327c98;
+  background: #107c5398;
   padding: 2rem 2.5rem;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -781,6 +781,22 @@ button:hover {
 }
 
 .btn-cancel {
-  background-color: #ccc;
-  color: #333;
+   margin: 0.3rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  /* background-color: #45ec6fc0; */
+  color: white;
 }
+
+.btn-cancel:hover{
+  background-color: #ec4545c0;
+  transform: scale(1.05);
+  /* Slight zoom effect */
+}
+
