@@ -257,6 +257,7 @@ function filterBoarderBills() {
             const searchable = `${bill.boarder} ${bill.billType} ${bill.status} ${bill.month}`.toLowerCase();
             return termsBill.every(term => searchable.includes(term));
         });
+
     renderFilteredBillTable(filteredB);
 }
 
@@ -267,7 +268,7 @@ function renderFilteredBillTable(filteredBills) {
     if (filteredBills.length === 0) {
         const row = document.createElement("tr");
         row.innerHTML = `<td colspan="6" style="text-align:center;">No bills match the search term</td><`;
-        transactionTableBody.appendChild(row);
+        billTableBody.appendChild(row);
         return;
     }
 

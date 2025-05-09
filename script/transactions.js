@@ -329,7 +329,7 @@ function renderFilteredTransactionsTable(filteredTransactions) {
 }
 
 
-// renderTable();
-// renderTransactionsTable();
-// loadBoardersDropdown();
+renderTable();
+renderTransactionsTable();
+loadBoardersDropdown();
 
