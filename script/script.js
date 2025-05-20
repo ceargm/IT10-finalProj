@@ -27,7 +27,7 @@ function showSection(id) {
 let currentUser = JSON.parse(localStorage.getItem('bhmsUser')) || null;
 if (!currentUser) {
     alert('Please log in first!');
-    window.location.href = 'login.html'; // Redirect if no user is logged in
+    window.location.href = 'index.html'; // Redirect if no user is logged in
     throw new Error('User not logged in');
 }
 
@@ -41,7 +41,7 @@ function logout() {
         // Clear user data from local storage or session storage
         localStorage.removeItem("bhmsUser"); // if you're using localStorage
         // Redirect to login page
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     });
 }
 
