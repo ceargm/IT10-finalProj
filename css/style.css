@@ -145,7 +145,8 @@ h2 {
   padding: 2rem 2.5rem;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  max-width: 1000px;
+/*   max-width: 1000px; */
+  max-width: 100%;
   max-height: 100vh;
   overflow: auto;
   justify-content: center;
