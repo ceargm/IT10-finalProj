@@ -23,7 +23,7 @@ if (signupForm) {
     localStorage.setItem('bhmsUsers', JSON.stringify(users));
 
     alert('Signup Successful! Please login.');
-    window.location.href = 'login.html';  // Redirect to the login page after signup
+    window.location.href = 'index.html';  // Redirect to the login page after signup
   });
 }
 
